@@ -1,0 +1,12 @@
+{
+    "Author": "Senah",
+    "Name": "SlipNSlide",
+    "Punchline": "Slide cast tool",
+    "Description": "Marks castbar with slide cast window.",
+    "ApplicableVersion": "any",
+    "Tags": [
+        "slide cast",
+        "slide",
+        "castbar"
+    ]
+}

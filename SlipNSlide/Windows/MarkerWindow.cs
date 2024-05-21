@@ -1,23 +1,28 @@
-﻿using System;
+using System;
+using System.Drawing;
 using System.Numerics;
 using Dalamud.Interface.Windowing;
 using ImGuiNET;
 
-namespace SamplePlugin.Windows;
+namespace SlipNSlide.Windows;
 
-public class ConfigWindow : Window, IDisposable
+public class MarkerWindow : Window, IDisposable
 {
     private Configuration Configuration;
+    public Vector2 v1 { get; set; }
+    public Vector2 v2 { get; set; }
 
     // We give this window a constant ID using ###
     // This allows for labels being dynamic, like "{FPS Counter}fps###XYZ counter window",
     // and the window ID will always be "###XYZ counter window" for ImGui
-    public ConfigWindow(Plugin plugin) : base("A Wonderful Configuration Window###With a constant ID")
+    public MarkerWindow(Plugin plugin) : base("markerwindow###")
     {
+
         Flags = ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoScrollbar |
-                ImGuiWindowFlags.NoScrollWithMouse;
+                ImGuiWindowFlags.NoScrollWithMouse | ImGuiWindowFlags.NoDecoration | ImGuiWindowFlags.NoBackground;
 
         Size = new Vector2(232, 75);
+        Position = new Vector2(1738, 953);
         SizeCondition = ImGuiCond.Always;
 
         Configuration = plugin.Configuration;
@@ -40,20 +45,12 @@ public class ConfigWindow : Window, IDisposable
 
     public override void Draw()
     {
-        // can't ref a property, so use a local copy
-        var configValue = Configuration.SomePropertyToBeSavedAndWithADefault;
-        if (ImGui.Checkbox("Random Config Bool", ref configValue))
+        uint ColorToUInt(Color color)
         {
-            Configuration.SomePropertyToBeSavedAndWithADefault = configValue;
-            // can save immediately on change, if you don't want to provide a "Save and Close" button
-            Configuration.Save();
+            return (uint)((color.A << 24) | (color.R << 16) |
+                          (color.G << 8) | (color.B << 0));
         }
-
-        var movable = Configuration.IsConfigWindowMovable;
-        if (ImGui.Checkbox("Movable Config Window", ref movable))
-        {
-            Configuration.IsConfigWindowMovable = movable;
-            Configuration.Save();
-        }
+        var color = ColorToUInt(Color.Green);
+        ImGui.GetWindowDrawList().AddRectFilled(v1, v2, color);
     }
 }
