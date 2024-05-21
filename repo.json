@@ -1,0 +1,22 @@
+[
+    {
+    "Author": "Senah",
+    "Name": "SlipNSlide",
+    "Punchline": "Slide cast tool",
+    "Description": "Marks castbar with slide cast window.",
+    "Changelog": "",
+    "InternalName": "SlipNSlide",
+    "AssemblyVersion": "1.0",
+    "RepoUrl": "https://github.com/dsitarek/SlipNSlide",
+    "ApplicableVersion": "any",
+    "DalamudApiLevel": 9,
+    "IconUrl": "",
+    "IsHide": "False",
+    "IsTestingExclusive": "False",
+    "DownloadLinkInstall": "https://github.com/dsitarek/SlipNSlide/releases/download/initial/SlipNSlide.zip",
+    "DownloadLinkUpdate": "https://github.com/dsitarek/SlipNSlide/releases/download/initial/SlipNSlide.zip",
+    "DownloadCount": 1,
+    "LastUpdate": 1714768560,
+    "AssemblyVersion": "1.0"
+    }
+]
